@@ -5,16 +5,19 @@ A self-hosted uptime monitoring platform where users can create public dashboard
 ## Features
 
 - **User System**
+
   - Sign up without email (username/password) with JWT authentication
   - Optional email field for downtime alerts
   - Public profile URLs: `/user/{username}` displaying all monitored sites
 
 - **Uptime Monitoring**
+
   - Add sites via URL with backend checks every 60 seconds
   - Track response time, status codes, and uptime percentages (lifetime + 7/30/90-day stats)
   - Store granular data for historical graphs (1-minute intervals, aggregated daily for long-term)
 
 - **Public Dashboards**
+
   - Grid layout showing all monitored sites with live status indicators
   - Interactive charts (response times, uptime trends) using Chart.js
   - Shareable URLs: `yourserver.com/site/{sitename}` or `yourserver.com/user/{username}`
@@ -40,18 +43,21 @@ A self-hosted uptime monitoring platform where users can create public dashboard
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/is-site-live.git
    cd is-site-live
    ```
 
 2. Configure environment variables:
+
    ```bash
    cp .env.example .env
    # Edit .env file with your settings
    ```
 
 3. Start the application:
+
    ```bash
    docker-compose up -d
    ```
@@ -85,11 +91,11 @@ A self-hosted uptime monitoring platform where users can create public dashboard
    ```
 3. Install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 4. Run the development server:
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 ## Configuration
