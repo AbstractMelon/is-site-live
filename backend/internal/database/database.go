@@ -71,21 +71,21 @@ func Migrate(db *DB) error {
 		return fmt.Errorf("failed to create sites table: %v", err)
 	}
 
-	// Create checks table
-	_, err = db.Pool.Exec(context.Background(), `
-		CREATE TABLE IF NOT EXISTS checks (
-			id SERIAL PRIMARY KEY,
-			site_id INTEGER REFERENCES sites(id) ON DELETE CASCADE,
-			status_code INTEGER,
-			response_time INTEGER, -- in milliseconds
-			is_up BOOLEAN NOT NULL,
-			error_message TEXT,
-			checked_at TIMESTAMP WITH TIME ZONE NOT NULL
-		)
-	`)
-	if err != nil {
-		return fmt.Errorf("failed to create checks table: %v", err)
-	}
+    // Create checks table
+    _, err = db.Pool.Exec(context.Background(), `
+        CREATE TABLE IF NOT EXISTS checks (
+            id SERIAL,
+            site_id INTEGER REFERENCES sites(id) ON DELETE CASCADE,
+            status_code INTEGER,
+            response_time INTEGER, -- in milliseconds
+            is_up BOOLEAN NOT NULL,
+            error_message TEXT,
+            checked_at TIMESTAMP WITH TIME ZONE NOT NULL,
+            PRIMARY KEY (id, checked_at)
+    `)
+    if err != nil {
+        return fmt.Errorf("failed to create checks table: %v", err)
+    }
 
 	// Create custom_domains table
 	_, err = db.Pool.Exec(context.Background(), `
